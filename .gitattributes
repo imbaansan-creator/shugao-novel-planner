@@ -2,3 +2,7 @@
 *.jpg binary
 *.png binary
 *.rar binary
+
+# GitHub 语言统计：构建产物与说明页不计入
+书稿.html linguist-generated=true
+使用说明.html linguist-documentation=true
