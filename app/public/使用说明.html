@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>书稿 · 使用说明</title>
+<style>
+  :root {
+    --bg: #fbfaf7;
+    --surface: #ffffff;
+    --surface-2: #f5f3ee;
+    --border: #e6e2d9;
+    --border-strong: #d5d0c4;
+    --text: #22201c;
+    --text-2: #6d6961;
+    --text-3: #9e998e;
+    --accent: #185fa5;
+    --accent-bg: #e9f2fb;
+    --amber: #8a5a08;
+    --amber-bg: #fbeed8;
+    --blue: #1c4c86;
+    --blue-bg: #e6eefb;
+    --green: #1f6446;
+    --green-bg: #dff0e5;
+    --grey: #7c776c;
+    --grey-bg: #efeee9;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+      "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    display: flex;
+    gap: 56px;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 56px 28px 120px;
+    align-items: flex-start;
+  }
+
+  /* ---------- 左侧目录 ---------- */
+  .toc {
+    position: sticky;
+    top: 40px;
+    width: 190px;
+    flex: none;
+    font-size: 13.5px;
+    line-height: 1.9;
+  }
+
+  .toc .brand {
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: 0.02em;
+    margin-bottom: 2px;
+  }
+
+  .toc .brand small {
+    display: block;
+    font-weight: 400;
+    font-size: 12px;
+    color: var(--text-3);
+    letter-spacing: 0.08em;
+    margin-top: 2px;
+  }
+
+  .toc nav {
+    margin-top: 22px;
+    border-top: 0.5px solid var(--border);
+    padding-top: 14px;
+  }
+
+  .toc a {
+    display: block;
+    color: var(--text-2);
+    text-decoration: none;
+    padding: 2px 0;
+  }
+
+  .toc a:hover { color: var(--accent); }
+
+  /* ---------- 正文 ---------- */
+  .doc { flex: 1; min-width: 0; max-width: 760px; }
+
+  h1 {
+    font-size: 30px;
+    line-height: 1.4;
+    margin: 0 0 10px;
+    font-weight: 600;
+  }
+
+  .lede {
+    font-size: 17px;
+    color: var(--text-2);
+    margin: 0 0 40px;
+    line-height: 1.85;
+  }
+
+  h2 {
+    font-size: 21px;
+    margin: 56px 0 14px;
+    font-weight: 600;
+    padding-top: 22px;
+    border-top: 0.5px solid var(--border);
+  }
+
+  h2 .num {
+    color: var(--text-3);
+    font-weight: 400;
+    font-size: 15px;
+    margin-right: 10px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  h3 {
+    font-size: 16.5px;
+    margin: 26px 0 8px;
+    font-weight: 600;
+  }
+
+  p { margin: 0 0 14px; }
+
+  strong { font-weight: 600; }
+
+  a { color: var(--accent); }
+
+  ul, ol { margin: 0 0 16px; padding-left: 22px; }
+
+  li { margin-bottom: 6px; }
+
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.88em;
+    background: var(--surface-2);
+    padding: 1px 6px;
+    border-radius: 4px;
+    color: var(--text-2);
+  }
+
+  /* 提示块 */
+  .note {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 20px 0;
+    font-size: 15px;
+    color: var(--text-2);
+    line-height: 1.8;
+  }
+
+  .note.warn { border-left-color: #b23b2e; }
+  .note b { color: var(--text); font-weight: 600; }
+
+  /* 埋提收 图 */
+  .chain {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin: 22px 0 10px;
+    font-size: 14px;
+  }
+
+  .chain .step {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .chain .chip {
+    padding: 3px 12px;
+    border-radius: 5px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .chain .when { font-size: 12px; color: var(--text-3); }
+
+  .chain .arrow { color: var(--border-strong); padding: 0 4px; }
+
+  .c-plant { background: var(--amber-bg); color: var(--amber); }
+  .c-hint  { background: var(--blue-bg);  color: var(--blue); }
+  .c-pay   { background: var(--green-bg); color: var(--green); }
+  .c-drop  { background: var(--grey-bg);  color: var(--grey); }
+
+  /* 页面表 */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0 8px;
+    font-size: 14.5px;
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 9px 14px;
+    border-bottom: 0.5px solid var(--border);
+    vertical-align: top;
+  }
+
+  th {
+    font-weight: 500;
+    color: var(--text-3);
+    font-size: 13px;
+    background: #fbfaf6;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  td:first-child { font-weight: 500; white-space: nowrap; }
+
+  /* 状态点 */
+  .states {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 14px 0 6px;
+  }
+
+  .state {
+    font-size: 13px;
+    padding: 2px 11px;
+    border-radius: 20px;
+    border: 0.5px solid var(--border-strong);
+    color: var(--text-3);
+    background: var(--surface);
+  }
+
+  .state.on-draft { background: var(--amber-bg); border-color: #d9a441; color: var(--amber); }
+  .state.on-pending { background: var(--blue-bg); border-color: #3f7fc4; color: var(--blue); }
+  .state.on-confirmed { background: var(--green-bg); border-color: #2f7d5a; color: var(--green); }
+
+  /* 步骤 */
+  .steps { counter-reset: step; margin: 18px 0 10px; padding: 0; list-style: none; }
+
+  .steps li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: 16px;
+  }
+
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--accent-bg);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .steps > li > b { display: block; font-weight: 600; margin-bottom: 2px; }
+
+  .steps span { color: var(--text-2); font-size: 15px; }
+
+  /* 反馈清单 */
+  .ask {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 22px 14px;
+    margin: 18px 0;
+  }
+
+  .ask ol { margin: 10px 0 0; }
+
+  .ask li { margin-bottom: 12px; color: var(--text-2); }
+
+  .ask li b { color: var(--text); display: block; font-weight: 500; }
+
+  .end {
+    margin-top: 60px;
+    padding-top: 18px;
+    border-top: 0.5px solid var(--border);
+    color: var(--text-3);
+    font-size: 13.5px;
+  }
+
+  @media (max-width: 900px) {
+    .wrap { display: block; padding: 32px 20px 80px; }
+    .toc { position: static; width: auto; margin-bottom: 32px; }
+    .toc nav { display: flex; flex-wrap: wrap; gap: 4px 16px; }
+    .doc { max-width: 100%; }
+    h1 { font-size: 25px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <aside class="toc">
+    <div class="brand">
+      书稿
+      <small>前期规划</small>
+    </div>
+    <nav>
+      <a href="#what">1 · 这是什么</a>
+      <a href="#open">2 · 打开它</a>
+      <a href="#demo">3 · 先看十分钟示例</a>
+      <a href="#start">4 · 建自己的书</a>
+      <a href="#hooks">5 · 埋 / 提 / 收 / 弃</a>
+      <a href="#states">6 · 为什么不是打勾</a>
+      <a href="#pages">7 · 每一页干什么</a>
+      <a href="#traps">8 · 三个坑</a>
+      <a href="#ask">9 · 我要你反馈什么</a>
+    </nav>
+  </aside>
+
+  <main class="doc">
+
+    <h1>书稿 · 使用说明</h1>
+    <p class="lede">
+      这是一个<b>不碰正文</b>的小说前期规划工具。它不写字，也不读你写的字。
+      <br />
+      它只做一件事：把你写之前想到的东西摆到桌面上，然后告诉你——哪两样对不上。
+    </p>
+
+    <h2 id="what"><span class="num">01</span>这是什么</h2>
+
+    <p>
+      写长篇最常见的死法，不是文笔差，也不是没灵感，是<b>写着写着散了</b>：
+      人物性格前后不一、埋的伏笔忘了收、某条线断了三万字、结局跟开头不是同一本书。
+    </p>
+
+    <p>
+      这些问题有一个共同点：<b>它们都不是写的时候发现的，是写完之后发现的。</b>
+      等你发现，已经改不动了。
+    </p>
+
+    <p>所以这个工具在你动笔之前，先把三样东西摊开：</p>
+
+    <ul>
+      <li><b>要问的问题</b>——24 条，分四个阶段，答不上来的那一条就是将来会塌的地方。</li>
+      <li><b>要记的账</b>——每个伏笔埋在哪、提过几次、收没收。</li>
+      <li><b>对不上的地方</b>——五类检查，只数关系，不判好坏。</li>
+    </ul>
+
+    <div class="note">
+      <b>它明确不做三件事：</b><br />
+      不写正文，不读正文，不评价你写得好不好。<br />
+      它不知道「三天走两千里」合不合理，也不知道这段感不感人。
+      判断权全在你手上——所以它永远不会误报。
+    </div>
+
+    <h2 id="open"><span class="num">02</span>打开它</h2>
+
+    <p>两种方式，看到的内容完全一样：</p>
+
+    <ul>
+      <li>
+        <b>在线版</b>——点开别人给你的链接就能用，不用装任何东西。
+        建议用电脑的 Chrome 或 Edge，手机能看但不好录入。
+      </li>
+      <li>
+        <b>本地版</b>——双击 <code>书稿.html</code>。不联网也能用，数据也不出这台机器。
+      </li>
+    </ul>
+
+    <p>
+      <b>第一次打开不是空表。</b>里面已经装好一份填完的示例《多情剑客无情剑》——这是故意的：
+      空表格看不出这个工具在干什么，而看着它填过一遍，一分钟就明白了。
+      要建自己的书，去「设置 → 清空」。
+    </p>
+
+    <div class="note warn">
+      <b>先说最要紧的一条：</b>数据只存在<b>你当前这个浏览器</b>里，不上传、没有账号。<br />
+      所以：清理浏览器缓存、换一个浏览器、换一台电脑、换一个链接地址，都会看不到原来的内容。<br />
+      养成习惯：<b>每次写完，去设置页点一下「导出 JSON」</b>。那是唯一能带走的备份。
+    </div>
+
+    <h2 id="demo"><span class="num">03</span>先看十分钟示例</h2>
+
+    <p>
+      别急着建自己的书。先看一份填好的，十分钟就够，你会立刻知道这东西在干什么。
+    </p>
+
+    <ol class="steps">
+      <li>
+        <b>先看「章节」这一页</b>
+        <span>打开就是一份按古龙那本书填好的完整示例：16 章、48 节、18 个人物、13 个钩子、10 条关系。如果把示例清掉了，去「设置 → 载入《多情剑客无情剑》」重新装一份。</span>
+      </li>
+      <li>
+        <b>打开「欠债表」</b>
+        <span>看它报了什么。全书 13 个钩子，只有两条有问题——一条是「沈浪与李家的旧约」第 11 章埋下、到结尾没收；另一条是「李寻欢的病」隔了 13 章没再提。</span>
+      </li>
+      <li>
+        <b>打开「检查单」</b>
+        <span>看它问了什么。这是这个软件的核心：24 条问题，分四个阶段，不是让你一次答完。</span>
+      </li>
+      <li>
+        <b>在「章节」里点开第一章左边的三角</b>
+        <span>你会看到人物和钩子挂在「节」上，章那一行是整章的汇总。右边有色块，颜色就是含义：人物按戏份深浅，钩子按埋 / 提 / 收。</span>
+      </li>
+    </ol>
+
+    <p>看完这四处，你就懂了。剩下的页面用到再看。</p>
+
+    <h2 id="start"><span class="num">04</span>建自己的书</h2>
+
+    <p>
+      先去「设置 → 清空」，然后按这个顺序填。<b>顺序很重要</b>，反过来填会白填。
+    </p>
+
+    <ol class="steps">
+      <li>
+        <b>书</b>
+        <span>书名、一句话故事、想表达什么。一句话故事里如果没有代价，通常说明故事还没想清楚。</span>
+      </li>
+      <li>
+        <b>检查单 · 骨架（8 条）</b>
+        <span>主角最后失去什么、反派跟谁有旧账、全书的真相是什么。答不上来就空着，空着比编一个强。</span>
+      </li>
+      <li>
+        <b>章节</b>
+        <span>先建 5 章，每章 3 节。每节只填两样：发生什么事、结束时什么变了。填不出「变了什么」的节，多半可以不写。</span>
+      </li>
+      <li>
+        <b>人物</b>
+        <span>3 到 5 个就够。只要四个字段：身份、据点、<b>绝不会为主角做的事</b>、出现在哪几章。</span>
+      </li>
+      <li>
+        <b>钩子</b>
+        <span>每章埋一两个。钩子必须能写成一个读者会追问的问句——写不出问句的，那只是个细节。</span>
+      </li>
+      <li>
+        <b>关系</b>
+        <span>只记<b>会变</b>的关系。填上「在哪一章变的」，这是整个页面最重要的一格。</span>
+      </li>
+      <li>
+        <b>欠债表</b>
+        <span>回来看它报了什么。报出来的每一条，要么去补，要么点「看了，不改」。</span>
+      </li>
+    </ol>
+
+    <div class="note">
+      <b>不用一次填完。</b>先把骨架和前三章填上，就够开写了。
+      剩下的等写到那儿再补——规划本来就是会被反复推翻的。
+    </div>
+
+    <h2 id="hooks"><span class="num">05</span>埋 / 提 / 收 / 弃</h2>
+
+    <p>
+      这是整个工具里唯一需要你动手「记」的东西。一个钩子有四种动作：
+    </p>
+
+    <div class="chain">
+      <div class="step">
+        <span class="chip c-plant">埋</span>
+        <span class="when">第 2 章</span>
+      </div>
+      <span class="arrow">──→</span>
+      <div class="step">
+        <span class="chip c-hint">提</span>
+        <span class="when">第 5 章</span>
+      </div>
+      <span class="arrow">──→</span>
+      <div class="step">
+        <span class="chip c-hint">提</span>
+        <span class="when">第 9 章</span>
+      </div>
+      <span class="arrow">──→</span>
+      <div class="step">
+        <span class="chip c-pay">收</span>
+        <span class="when">第 16 章</span>
+      </div>
+    </div>
+
+    <p>
+      <b>为什么要「提」？</b>因为第 2 章埋的东西，到第 9 章读者早忘了。
+      你收的时候他不会有「原来是这个」的快感，只会觉得「哦，有这么回事吗」。
+      中途提一句，成本极低——一句话就够，不提就废。
+    </p>
+
+    <p>
+      第四个动作是<b>弃</b>：决定不写了。这是合法的，而且比硬编一个回收强。<br />
+      标了「弃」的钩子不会再进欠债表。
+    </p>
+
+    <h3>软钩子和硬钩子</h3>
+
+    <p>
+      <b>硬钩子必须收</b>：丢了的那支发钗到谁手里了、那个人的名字是什么、密信写了什么。<br />
+      <b>软钩子可以不收</b>：街角那个总在擦刀的人、算命瞎子念叨的一句没头没尾的话。
+      它们的作用是让世界显得比故事大。
+    </p>
+
+    <p>
+      所以标「软」的钩子不会进欠债表。<b>如果所有细节都必须有用，这本书会工整，但假。</b>
+    </p>
+
+    <h2 id="states"><span class="num">06</span>为什么不是打勾</h2>
+
+    <p>
+      检查单里每条问题有五个状态，不是一个勾：
+    </p>
+
+    <div class="states">
+      <span class="state">未答</span>
+      <span class="state on-draft">有想法</span>
+      <span class="state on-pending">待验证</span>
+      <span class="state on-confirmed">已确认</span>
+      <span class="state">不适用</span>
+    </div>
+
+    <p>
+      「这个问题我想清楚了」——勾上。写到一半发现根本没想清楚。这是常态，不是例外。
+    </p>
+
+    <p>
+      所以真正的状态是<b>「待验证」</b>：你想过，但还没写到时候。
+      它比「已确认」诚实，因为它承认自己还没被检验过。
+    </p>
+
+    <p>
+      「已确认」的意思是：这条你写进正文，并且验证过了。<b>不是「我想过了」。</b>
+    </p>
+
+    <h2 id="pages"><span class="num">07</span>每一页干什么</h2>
+
+    <table>
+      <thead>
+        <tr><th>页面</th><th>用来做什么</th><th>什么时候用</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>书</td><td>书名、一句话故事、想表达什么</td><td>开书第一天</td></tr>
+        <tr><td>检查单</td><td>24 条该想清楚的问题，分四阶段</td><td>动笔前，之后每卷末</td></tr>
+        <tr><td>章节</td><td>章 / 节、每节发生什么、结束时变了什么</td><td>全程</td></tr>
+        <tr><td>人物</td><td>身份、据点、底线、出场分布</td><td>建人的时候</td></tr>
+        <tr><td>关系</td><td>谁和谁、从什么变成什么、在哪一章变</td><td>关系要变的时候</td></tr>
+        <tr><td>钩子</td><td>埋 / 提 / 收 / 弃</td><td>埋伏笔的时候</td></tr>
+        <tr><td>道具</td><td>外观、来历、作用、现在在谁手里</td><td>有信物 / 武器的时候</td></tr>
+        <tr><td>线</td><td>这条线推进过哪些章</td><td>多线叙事的时候</td></tr>
+        <tr><td>世界观</td><td>势力、地理、规则、留白</td><td>想到就记</td></tr>
+        <tr><td>地图</td><td>底图 + 打点（可选）</td><td>需要给地点定位时</td></tr>
+        <tr><td>欠债表</td><td>五类检查的结果</td><td>每写完一卷</td></tr>
+        <tr><td>设置</td><td>字号、导出、快照、绑定文件</td><td>备份时</td></tr>
+      </tbody>
+    </table>
+
+    <p style="font-size:14px;color:var(--text-3);margin-top:10px;">
+      小技巧：<code>Ctrl + Z</code> 可以撤销任何改动。设置里能调字号，2K 屏建议用「大」。
+    </p>
+
+    <h2 id="traps"><span class="num">08</span>三个坑</h2>
+
+    <h3>一、数据在浏览器里，清缓存就没了</h3>
+    <p>
+      这是网页版的硬限制。养成习惯：<b>每次写完，设置页点一下「导出 JSON」</b>。
+      设置里的「自动快照」会留最近六版，但那是同一块地方，救不了清缓存。
+    </p>
+
+    <h3>二、换个地址，就是另一个世界</h3>
+    <p>
+      如果别人给你的是网址版，用哪个地址打开就一直用哪个。换个写法，数据就看不到了。
+      双击 HTML 的版本没这个问题。<br />
+      同理：同一个链接在别人电脑上打开，看到的是示例，不是你的数据——数据从来没离开过你这台机器。
+    </p>
+
+    <h3>三、别一次答完 24 条</h3>
+    <p>
+      第一次打开检查单，你会想一口气答完。答到第八条就会开始糊弄自己——
+      然后整张表就废了。按阶段来，一次六七条。
+    </p>
+
+    <h2 id="ask"><span class="num">09</span>我要你反馈什么</h2>
+
+    <p>
+      这是个还没做完的原型，功能会变，数据格式也可能变。<b>别把它当唯一存档。</b>
+      我想知道的不是「好不好用」，是下面这四个：
+    </p>
+
+    <div class="ask">
+      <ol>
+        <li>
+          <b>第一次打开，你知不知道该干什么？</b>
+          如果不知道，卡在哪一步、当时在想什么？
+        </li>
+        <li>
+          <b>欠债表报出来的那几条，有没有一条让你觉得「这个我确实忘了」？</b>
+          如果没有，一条都没有，那这个工具的核心假设就是错的——这个答案比夸奖有用得多。
+        </li>
+        <li>
+          <b>哪一步最麻烦、最想放弃？</b>
+          是填人物、挂钩子，还是答检查单？具体到哪一栏最好。
+        </li>
+        <li>
+          <b>有没有哪个字段，你填了一次就再也没看过？</b>
+          有的话告诉我，我把它删掉。
+        </li>
+      </ol>
+    </div>
+
+    <p>
+      直接说不好用就行，不用客气。这东西是给写作者用的，
+      写作者的时间比我的面子值钱。
+    </p>
+
+    <div class="end">
+      书稿 · 前期规划　|　单文件版，数据只存在你自己的浏览器里
+    </div>
+
+  </main>
+</div>
+</body>
+</html>

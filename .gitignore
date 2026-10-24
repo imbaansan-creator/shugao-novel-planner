@@ -1,0 +1,20 @@
+# 依赖
+node_modules/
+
+# 构建产物（书稿.html 是发布用的单文件，单独提交）
+app/dist/
+app/dist-single/
+
+# 部署产物：由 app/dist-single 生成，见 README「部署」
+投稿/site/
+
+# 本地工具与临时文件
+.workbuddy/
+.wbapp_*.genie
+*.rar
+*.log
+.DS_Store
+Thumbs.db
+
+# 临时截图
+.*.png
